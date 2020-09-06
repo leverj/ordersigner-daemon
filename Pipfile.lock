@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7f7606f08e0544d8d012ef4d097dabdd6df6843a28793eb6551245d4b2db4242"
+            "sha256": "08393aad21153fa62d10d05d4e3a2e9797aa0449f1a574b9becf3146163a1fa0"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -15,6 +15,11 @@
             }
         ]
     },
-    "default": {},
+    "default": {
+        "leverj-ordersigner-daemon": {
+            "editable": true,
+            "path": "."
+        }
+    },
     "develop": {}
 }
