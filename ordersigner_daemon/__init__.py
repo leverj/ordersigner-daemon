@@ -54,10 +54,24 @@ class SigningProtocol(basic.LineReceiver):
             *item_getter('type', 'order', 'instrument', 'signer')(loads(line))
         )
 
-        self.transport.write(dumps({
-            'ok': True,
-            'signature': self.order_signer.sign(order),
-        }).encode('utf-8') + self.delimiter)
+        try:
+            signature = self.order_signer.sign(order)
+        except Exception as e:
+            result = {
+                'ok': False,
+                'error': {
+                    'type': type(e).__name__,
+                    'message': str(e),
+                    'context': getattr(e, 'context', {}),
+                },
+            }
+        else:
+            result = {
+                'ok': True,
+                'signature': signature,
+            }
+
+        self.transport.write(dumps(result).encode('utf-8') + self.delimiter)
 
     def rawDataReceived(self, data):
         raise RuntimeError(f'Raw data not supported (received {data!r})')
