@@ -10,8 +10,9 @@
 # Sphinx documentation
 /docs/_build/
 
-# Created by ``setup.py test``.
-/.eggs/*
+# twistd generated files
+/twisted.log
+/twisted.pid
 
 # Virtualenvs for unit tests.
 # https://tox.readthedocs.io/en/latest/
