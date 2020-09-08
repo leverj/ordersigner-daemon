@@ -1,6 +1,7 @@
 from json import dumps
 from unittest import TestCase
 
+from ordersigner_daemon.testing import MockOrderSigner
 from twisted.internet import address, testing
 
 from ordersigner_daemon import SigningProtocol, SigningProtocolFactory
@@ -10,8 +11,12 @@ class SigningProtocolTest(TestCase):
     def setUp(self) -> None:
         factory = SigningProtocolFactory()
 
+        self.order_signer = MockOrderSigner()
+
         self.protocol: SigningProtocol = \
             factory.buildProtocol(address.UNIXAddress(b'test'))
+        self.protocol.order_signer = self.order_signer
+
         self.transport = testing.StringTransport()
 
         self.protocol.makeConnection(self.transport)
@@ -20,6 +25,8 @@ class SigningProtocolTest(TestCase):
         """
         Client sends a valid transaction for signing.
         """
+        self.order_signer.spot_sig = '0xb4dc0de'
+
         self.protocol.dataReceived(dumps({
             'instrument': {
                 'symbol': 'LEVETH',
@@ -47,5 +54,5 @@ class SigningProtocolTest(TestCase):
 
         self.assertEqual(self.transport.value(), dumps({
             'ok': True,
-            'signature': '0xaad62800f307299a33dae10908c559bd7cd4658a3803e6b587e0f5bf95a052c17783324ec07b629c30e3a41eb20b4ace2787304c50a00b5cdcbd6bc22dbbded11b',
+            'signature': self.order_signer.spot_sig,
         }).encode('utf-8') + self.protocol.delimiter)

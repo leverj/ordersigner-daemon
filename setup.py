@@ -21,7 +21,7 @@ setup(
     author="Phoenix Zerin",
     author_email="phx@phx.ph",
     description="Leverj OrderSigner Daemon",
-    install_requires=["twisted~=20.3"],
+    install_requires=["twisted~=20.3", "leverj-ordersigner~=0.9"],
     license="MIT",
     long_description=long_description,
     name="leverj-ordersigner-daemon",

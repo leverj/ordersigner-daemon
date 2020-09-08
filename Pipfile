@@ -13,6 +13,7 @@ pipenv-setup = "~=3.1"
 [packages]
 leverj-ordersigner-daemon = {editable = true, path = "."}
 twisted = "~=20.3"
+leverj-ordersigner = "~=0.9"
 
 [requires]
 python_version = "3.8"
