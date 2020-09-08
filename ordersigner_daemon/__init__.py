@@ -6,13 +6,33 @@ from leverj_ordersigner import futures, spot
 from twisted.internet import address, protocol
 from twisted.protocols import basic
 
-Order = named_tuple('Order', ('order', 'instrument', 'signer'))
+Order = named_tuple('Order', ('type', 'order', 'instrument', 'signer'))
 
 
 class OrderSigner:
     """
     Provides an object-oriented facade for the leverj_ordersigner lib.
     """
+
+    TYPE_FUTURES = 'futures'
+    TYPE_SPOT = 'spot'
+
+    def sign(self, order: Order) -> str:
+        """
+        Returns the correct signature for the provided order object.
+        """
+        if order.type == self.TYPE_FUTURES:
+            return self.sign_futures(
+                order.order,
+                order.instrument,
+                order.signer,
+            )
+        elif order.type == self.TYPE_SPOT:
+            return self.sign_spot(
+                order.order,
+                order.instrument,
+                order.signer,
+            )
 
     def sign_futures(self, order: dict, instrument: dict, signer: str) -> str:
         return futures.sign_order(order, instrument, signer)
@@ -31,12 +51,12 @@ class SigningProtocol(basic.LineReceiver):
 
     def lineReceived(self, line: bytes) -> None:
         order = Order(
-            *item_getter('order', 'instrument', 'signer')(loads(line))
+            *item_getter('type', 'order', 'instrument', 'signer')(loads(line))
         )
 
         self.transport.write(dumps({
             'ok': True,
-            'signature': self.order_signer.sign_spot(*order),
+            'signature': self.order_signer.sign(order),
         }).encode('utf-8') + self.delimiter)
 
     def rawDataReceived(self, data):
