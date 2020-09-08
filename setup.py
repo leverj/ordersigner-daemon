@@ -5,22 +5,27 @@ from codecs import open
 from setuptools import find_packages, setup
 
 # Load long description for PyPI.
-with open('./README.md', 'r', 'utf-8') as f:
+with open("README.rst", "r", "utf-8") as f:
     long_description = f.read()
 
 setup(
-    author='Phoenix Zerin',
-    author_email='phx@phx.ph',
-    description='Leverj OrderSigner Daemon',
-    install_requires=[
-        'twisted~=20.3',
-    ],
-    license='MIT',
+    extras_require={
+        "dev": [
+            "sphinx~=3.2",
+            "sphinx-rtd-theme~=0.5",
+            "tox~=3.20",
+            "nose~=1.3",
+            "pipenv-setup~=3.1",
+        ]
+    },
+    author="Phoenix Zerin",
+    author_email="phx@phx.ph",
+    description="Leverj OrderSigner Daemon",
+    install_requires=["twisted~=20.3"],
+    license="MIT",
     long_description=long_description,
-    name='leverj-ordersigner-daemon',
-    packages=find_packages('.'),
-    test_suite='tests',
-    tests_require=['nose'],
-    url='https://github.com/leverj/ordersigner-daemon',
-    version='1.0-pre',
+    name="leverj-ordersigner-daemon",
+    packages=find_packages("."),
+    url="https://github.com/leverj/ordersigner-daemon",
+    version="1.0rc0",
 )

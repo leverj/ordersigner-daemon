@@ -22,7 +22,7 @@ copyright = '2020, Leverj'
 author = 'Phoenix Zerin'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0-pre'
+release = ''
 
 
 # -- General configuration ---------------------------------------------------

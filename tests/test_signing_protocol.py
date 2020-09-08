@@ -43,9 +43,9 @@ class SigningProtocolTest(TestCase):
                 'expiryTime': 1238217320021122,
             },
             'signer': '0xb98ea45b6515cbd6a5c39108612b2cd5ae184d5eb0d72b21389a1fe6db01fe0d',
-        }).encode('utf-8'))
+        }).encode('utf-8') + self.protocol.delimiter)
 
         self.assertEqual(self.transport.value(), dumps({
             'ok': True,
             'signature': '0xaad62800f307299a33dae10908c559bd7cd4658a3803e6b587e0f5bf95a052c17783324ec07b629c30e3a41eb20b4ace2787304c50a00b5cdcbd6bc22dbbded11b',
-        }).encode('utf-8'))
+        }).encode('utf-8') + self.protocol.delimiter)
