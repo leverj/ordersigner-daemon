@@ -11,3 +11,8 @@ pipenv install --dev
 ```bash
 pipenv run make html -C docs
 ```
+
+### Unit Tests
+```bash
+pipenv run tox
+```
