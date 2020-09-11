@@ -20,6 +20,7 @@ class SigningProtocolTest(TestCase):
         self.protocol: SigningProtocol = \
             factory.buildProtocol(address.UNIXAddress(b'test'))
         self.protocol.order_signer = self.order_signer
+        self.protocol.print_exceptions = False
 
         self.transport = testing.StringTransport()
 

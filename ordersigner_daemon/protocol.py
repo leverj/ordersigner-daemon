@@ -1,3 +1,5 @@
+from traceback import print_exc
+
 import filters as f
 from twisted.internet import address, protocol
 from twisted.protocols import basic
@@ -6,10 +8,10 @@ from ujson import dumps
 from ordersigner_daemon import OrderSigner
 from ordersigner_daemon.validation import OrderSignerRequest
 
-
 # Cache an instance of the filter in the module, so that we don't have to
 # re-initialise it every time a new request is received.
 request_filter = OrderSignerRequest()
+
 
 class SigningProtocol(basic.LineReceiver):
     """
@@ -20,6 +22,7 @@ class SigningProtocol(basic.LineReceiver):
 
     def __init__(self, order_signer: OrderSigner) -> None:
         self.order_signer = order_signer
+        self.print_exceptions = True
 
     def lineReceived(self, line: bytes) -> None:
         filter_runner = f.FilterRunner(request_filter, line)
@@ -28,6 +31,9 @@ class SigningProtocol(basic.LineReceiver):
             try:
                 signature = self.order_signer.sign(filter_runner.cleaned_data)
             except Exception as e:
+                if self.print_exceptions:
+                    print_exc()
+
                 result = {
                     'ok': False,
                     'error': {
