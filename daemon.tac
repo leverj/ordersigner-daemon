@@ -3,7 +3,7 @@
 from twisted.application import internet, service
 from twisted.internet import endpoints, reactor
 
-from ordersigner_daemon import SigningProtocolFactory
+from ordersigner_daemon.protocol import SigningProtocolFactory
 
 application = service.Application('leverj-ordersigner-daemon')
 

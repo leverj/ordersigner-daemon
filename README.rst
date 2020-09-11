@@ -4,12 +4,11 @@ TODO: overview and background, links to documentation
 
 Setup
 -----
-This project uses `Pipenv`_ for managing dependencies.
+To install the library into your `virtualenv`_:
 
 .. code-block:: bash
 
-    pipenv install -e .
-    pipenv shell
+    pip install leverj-ordersigner-daemon
 
 Running the Daemon
 ------------------
@@ -18,9 +17,6 @@ This project uses `Twisted`_ for event-driving networking functionality.  To run
 .. code-block:: bash
 
     twistd -y daemon.tac
-
-.. note::
-    Make sure you've run ``pipenv shell`` first.
 
 ``twistd`` will create the following files when it runs:
 
@@ -61,6 +57,9 @@ Send a serialised order in JSON format, terminated with ``\r\n`` (e.g., press :k
     {"ok": true, "signature": "0xaad62800f307299a33dae10908c559bd7cd4658a3803e6b587e0f5bf95a052c17783324ec07b629c30e3a41eb20b4ace2787304c50a00b5cdcbd6bc22dbbded11b"}
 
 
+.. important::
+    Ensure that you escape all non-ASCII content and/or that your terminal uses UTF-8 encoding.
+
 Note that, due to the way Unix Domain Sockets work, the daemon **can** handle connections from multiple clients simultaneously.  For more information, see `How do Unix Domain Sockets differentiate between multiple clients?`_
 
 Documentation
@@ -71,9 +70,6 @@ This project uses `Sphinx`_ as its docs builder.  To build documentation files, 
 
     make html -C docs
 
-.. note::
-    Make sure you've run ``pipenv shell`` first.
-
 Unit Tests
 ----------
 This project uses `Tox`_ as its test runner.  To execute unit tests, run the following command:
@@ -81,23 +77,6 @@ This project uses `Tox`_ as its test runner.  To execute unit tests, run the fol
 .. code-block:: bash
 
     tox
-
-.. note::
-    Make sure you've run ``pipenv shell`` first.
-
-Releases
---------
-1. Synchronise ``Pipfile`` dependencies with ``setup.py``:
-    .. code-block:: bash
-
-        pipenv-setup sync --dev --pipfile
-
-    .. note::
-        Make sure you've run ``pipenv shell`` first.
-
-    For more information about why this project defines dependencies in both ``Pipfile`` **and** ``setup.py``, refer to `Pipfile vs setup.py`_.
-
-2. Increment version string in ``setup.py``.
 
 .. _How do Unix Domain Sockets differentiate between multiple clients?: https://stackoverflow.com/a/9644495/
 .. _Pipenv: https://pipenv.pypa.io/en/latest/
@@ -107,3 +86,4 @@ Releases
 .. _twistd: https://twistedmatrix.com/documents/current/core/howto/basics.html#twistd
 .. _Twisted: https://twistedmatrix.com/trac/
 .. _Unix Domain Socket: https://en.wikipedia.org/wiki/Unix_domain_socket
+.. _virtualenv: https://virtualenv.pypa.io/en/stable/
