@@ -15,7 +15,6 @@ setup(
             "sphinx-rtd-theme~=0.5",
             "tox~=3.20",
             "nose2~=0.9",
-            "pipenv-setup~=3.1",
         ]
     },
     author="Phoenix Zerin",
