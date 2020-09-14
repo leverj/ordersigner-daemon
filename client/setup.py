@@ -25,6 +25,7 @@ setup(
     author_email="phx@phx.ph",
     description="Leverj OrderSigner Daemon",
     install_requires=[
+        "twisted~=20.3",
         "ujson~=3.2",
     ],
     license="MIT",

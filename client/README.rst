@@ -12,6 +12,11 @@ To install the library into your `virtualenv`_:
 
     pip install leverj-ordersigner-client
 
+Usage
+-----
+* TODO: How to import and invoke the client.
+* TODO: Managing transport instances.
+
 Development
 -----------
 If you are working on the ``leverj-ordersigner-client`` project locally, you will need to install additional dependencies (only has to be done once):
