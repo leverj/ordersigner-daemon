@@ -9,29 +9,32 @@ from codecs import open
 from setuptools import find_packages, setup
 
 # Load long description for PyPI.
-with open("README.rst", "r", "utf-8") as f:
+with open('README.rst', 'r', 'utf-8') as f:
     long_description = f.read()
 
 setup(
     extras_require={
-        "dev": [
-            "sphinx~=3.2",
-            "sphinx-rtd-theme~=0.5",
-            "tox~=3.20",
-            "nose2~=0.9",
+        'dev': [
+            'sphinx~=3.2',
+            'sphinx-rtd-theme~=0.5',
+            'tox~=3.20',
         ]
     },
-    author="Phoenix Zerin",
-    author_email="phx@phx.ph",
-    description="Leverj OrderSigner Daemon",
+    author='Phoenix Zerin',
+    author_email='phx@phx.ph',
+    description='Leverj OrderSigner Daemon',
     install_requires=[
-        "twisted~=20.3",
-        "ujson~=3.2",
+        'twisted~=20.3',
+
+        # ujson v3 dropped support for Python 2.
+        # https://github.com/ultrajson/ultrajson/releases/tag/3.0.0
+        'ujson~=2.0; python_version < "3"',
+        'ujson~=3.2; python_version >= "3"',
     ],
-    license="MIT",
+    license='MIT',
     long_description=long_description,
-    name="leverj-ordersigner-client",
-    packages=find_packages("."),
-    url="https://github.com/leverj/ordersigner-daemon",
-    version="1.0rc0",
+    name='leverj-ordersigner-client',
+    packages=find_packages('.'),
+    url='https://github.com/leverj/ordersigner-daemon',
+    version='1.0rc0',
 )

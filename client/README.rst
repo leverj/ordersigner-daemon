@@ -35,11 +35,11 @@ This project uses `Sphinx`_ as its docs builder.  To build documentation files, 
 
 Unit Tests
 ^^^^^^^^^^
-This project uses `nose2`_ as its test runner.  To execute unit tests in the current virtualenv, run the following command:
+To execute unit tests in the current virtualenv, run the following command:
 
 .. code-block:: bash
 
-    nose2
+    trial tests
 
 In addition, you can use `Tox`_ to run unit tests in each supported version of Python:
 
@@ -47,7 +47,6 @@ In addition, you can use `Tox`_ to run unit tests in each supported version of P
 
     tox
 
-.. _nose2: https://docs.nose2.io/en/latest/
 .. _Python 2 reached its end of life on January 1st, 2020: https://pip.pypa.io/en/latest/development/release-process/#python-2-support
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
 .. _Tox: https://tox.readthedocs.io/en/latest/
