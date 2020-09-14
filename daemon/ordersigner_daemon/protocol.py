@@ -13,7 +13,7 @@ from ordersigner_daemon.validation import OrderSignerRequest
 request_filter = OrderSignerRequest()
 
 
-class SigningProtocol(basic.LineReceiver):
+class SigningProtocol(basic.LineOnlyReceiver):
     """
     Processes individual requests received by the server.
     """
@@ -57,10 +57,7 @@ class SigningProtocol(basic.LineReceiver):
                 },
             }
 
-        self.transport.write(dumps(result).encode('utf-8') + self.delimiter)
-
-    def rawDataReceived(self, data):
-        raise RuntimeError(f'Raw data not supported (received {data!r})')
+        self.sendLine(dumps(result).encode('utf-8'))
 
 
 class SigningProtocolFactory(protocol.Factory):
