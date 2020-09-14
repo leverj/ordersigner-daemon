@@ -64,8 +64,16 @@ Send a serialised order in JSON format, terminated with ``\r\n`` (e.g., press :k
 
 Note that, due to the way Unix Domain Sockets work, the daemon **can** handle connections from multiple clients simultaneously.  For more information, see `How do Unix Domain Sockets differentiate between multiple clients?`_
 
+Development
+-----------
+If you are working on the ``leverj-ordersigner-daemon`` project locally, you will need to install additional dependencies (only has to be done once):
+
+.. code-block:: bash
+
+    pip install -e '.[dev]'
+
 Documentation
--------------
+^^^^^^^^^^^^^
 This project uses `Sphinx`_ as its docs builder.  To build documentation files, run the following command:
 
 .. code-block:: bash
@@ -73,16 +81,21 @@ This project uses `Sphinx`_ as its docs builder.  To build documentation files, 
     make html -C docs
 
 Unit Tests
-----------
-This project uses `Tox`_ as its test runner.  To execute unit tests, run the following command:
+^^^^^^^^^^
+This project uses `nose2`_ as its test runner.  To execute unit tests in the current virtualenv, run the following command:
+
+.. code-block:: bash
+
+    nose2
+
+In addition, you can use `Tox`_ to run unit tests in each supported version of Python:
 
 .. code-block:: bash
 
     tox
 
 .. _How do Unix Domain Sockets differentiate between multiple clients?: https://stackoverflow.com/a/9644495/
-.. _Pipenv: https://pipenv.pypa.io/en/latest/
-.. _Pipfile vs setup.py: https://pipenv.pypa.io/en/latest/advanced/#pipfile-vs-setup-py
+.. _nose2: https://docs.nose2.io/en/latest/
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
 .. _Tox: https://tox.readthedocs.io/en/latest/
 .. _twistd: https://twistedmatrix.com/documents/current/core/howto/basics.html#twistd
