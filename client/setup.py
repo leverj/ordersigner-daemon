@@ -34,7 +34,11 @@ setup(
     license='MIT',
     long_description=long_description,
     name='leverj-ordersigner-client',
-    packages=find_packages('.'),
+    packages=find_packages('.', exclude=(
+        # For compatibility with Twisted Trial, tests must be in a Python
+        # package, but we don't want to include them in dists.
+        'tests', 'tests.*',
+    )),
     url='https://github.com/leverj/ordersigner-daemon',
     version='1.0rc0',
 )
