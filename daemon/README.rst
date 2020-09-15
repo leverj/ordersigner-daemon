@@ -14,7 +14,7 @@ To install the library into your `virtualenv`_:
 
 Running the Daemon
 ------------------
-This project uses `Twisted`_ for event-driving networking functionality.  To run the daemon, use the `twistd`_ executable:
+This project uses `Twisted`_ for event-driven networking functionality.  To run the daemon, use the `twistd`_ executable:
 
 .. code-block:: bash
 
