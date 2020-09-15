@@ -3,9 +3,13 @@ from ujson import loads
 
 from ordersigner_daemon import Order, OrderSigner
 
+__all__ = [
+    'OrderSignerRequest'
+]
+
 
 # noinspection PyUnusedLocal
-def loads_shim(value, *args, **kwargs):
+def _loads_shim(value, *args, **kwargs):
     """
     Compat shim so that we can use ultimate json with ``JsonDecode`` filter
     (which attempts to call ``loads`` with ``object_pairs_hook=OrderedDict``
@@ -22,7 +26,7 @@ class OrderSignerRequest(f.BaseFilter):
     def _apply(self, value: bytes) -> Order:
         parsed = self._filter(
             value,
-            f.Unicode | f.Required | f.JsonDecode(loads_shim) | f.FilterMapper(
+            f.Unicode | f.Required | f.JsonDecode(_loads_shim) | f.FilterMapper(
                 {
                     'instrument': f.Type(dict) | f.Required,
                     'order': f.Type(dict) | f.Required,

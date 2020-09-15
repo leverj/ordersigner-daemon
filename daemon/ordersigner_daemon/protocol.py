@@ -8,6 +8,11 @@ from ujson import dumps
 from ordersigner_daemon import OrderSigner
 from ordersigner_daemon.validation import OrderSignerRequest
 
+__all__ = [
+    'SigningProtocol',
+    'SigningProtocolFactory',
+]
+
 # Cache an instance of the filter in the module, so that we don't have to
 # re-initialise it every time a new request is received.
 request_filter = OrderSignerRequest()

@@ -1,6 +1,10 @@
 import typing
 from ordersigner_daemon import OrderSigner
 
+__all__ = [
+    'MockOrderSigner',
+]
+
 
 class MockOrderSigner(OrderSigner):
     """

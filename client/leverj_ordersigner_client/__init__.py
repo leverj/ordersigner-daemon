@@ -4,9 +4,46 @@ from __future__ import absolute_import, division, print_function, \
 
 from collections import deque
 
-from twisted.internet import defer
+from twisted.internet import base, defer, endpoints, reactor
 from twisted.protocols import basic
 from ujson import dumps, loads
+
+__all__ = [
+    'async_create_client',
+    'ErrorResponse',
+    'NonSuccessResponse',
+    'OrderSignerClient',
+    'UnprocessableResponse',
+]
+
+def async_create_client(use_reactor=reactor):
+    # type: (base.ReactorBase) -> defer.Deferred
+    """
+    Asynchronously creates a new client instance and establishes a connection
+    to the daemon.
+
+    Note that this function returns a :py:cls:`defer.Deferred` instance, so
+    you'll need to attach a callback to send requests once the connection is
+    established.
+
+    .. important::
+        The client will not connect to the daemon until you start the reactor.
+
+    Refer to the project ``README`` for more information and examples.
+
+    :param use_reactor: The reactor (event loop) to use.  Unless you are trying
+    to accomplish something very specific, you can probably keep the default
+    value.
+
+    :return: A deferred that will resolve with the :py:cls:`OrderSignerClient`
+    instance.
+    """
+    client = endpoints.clientFromString(
+        use_reactor,
+        'unix:/tmp/leverj-ordersigner-daemon.sock',
+    )
+
+    return endpoints.connectProtocol(client, OrderSignerClient())
 
 
 class NonSuccessResponse(ValueError):
