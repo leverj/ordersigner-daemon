@@ -40,12 +40,10 @@ The daemon listens for new requests via a `Unix Domain Socket`_ located at
 daemon when it starts up)::
 
     > twistd -n leverj-ordersigner
-    2020-09-11T12:01:26+1200 [-] Loading daemon.tac...
-    2020-09-11T12:01:27+1200 [-] Loaded.
-    2020-09-11T12:01:27+1200 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 20.3.0 (/bin/python 3.8.5) starting up.
-    2020-09-11T12:01:27+1200 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.selectreactor.SelectReactor.
-    2020-09-11T12:01:27+1200 [-] SigningProtocolFactory starting on '/tmp/leverj-ordersigner-daemon.sock'
-    2020-09-11T12:01:27+1200 [ordersigner_daemon.SigningProtocolFactory#info] Starting factory <ordersigner_daemon.SigningProtocolFactory object at 0x1047813d0>
+    2020-09-17T17:02:44+1200 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 20.3.0 (/bin/python 3.8.5) starting up.
+    2020-09-17T17:02:44+1200 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.selectreactor.SelectReactor.
+    2020-09-17T17:02:44+1200 [-] SigningProtocolFactory starting on '/tmp/leverj-ordersigner-daemon.sock'
+    2020-09-17T17:02:44+1200 [ordersigner_daemon.protocol.SigningProtocolFactory#info] Starting factory <ordersigner_daemon.protocol.SigningProtocolFactory object at 0x10fcaca30>
 
 To interact with the daemon manually, you can use ``netcat``::
 
