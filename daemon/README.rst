@@ -39,7 +39,7 @@ The daemon listens for new requests via a `Unix Domain Socket`_ located at
 ``/tmp/leverj-ordersigner-daemon.sock`` (can be seen in the output from the
 daemon when it starts up)::
 
-    twistd -ny daemon.tac
+    > twistd -n leverj-ordersigner
     2020-09-11T12:01:26+1200 [-] Loading daemon.tac...
     2020-09-11T12:01:27+1200 [-] Loaded.
     2020-09-11T12:01:27+1200 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 20.3.0 (/bin/python 3.8.5) starting up.
