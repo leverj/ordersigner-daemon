@@ -23,13 +23,14 @@ def client_connected(client):
     progress = tqdm(orders)
 
     def response_received(actual, expected):
-        progress.update()
-        if progress.n >= progress.total:
-            progress.close()
-            reactor.stop()
-            t.stop()
-
-        assert actual == expected
+        try:
+            assert actual == expected
+        finally:
+            progress.update()
+            if progress.n >= progress.total:
+                progress.close()
+                reactor.stop()
+                t.stop()
 
     def request_failed(failure_):
         failure_.printTraceback(stderr)
@@ -56,6 +57,7 @@ def client_connection_failure(failure_):
         reactor.stop()
     finally:
         failure_.printTraceback(stderr)
+        print('Check that the daemon is running.')
 
 
 if __name__ == '__main__':
