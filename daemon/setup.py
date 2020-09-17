@@ -19,6 +19,13 @@ setup(
     },
     author='Phoenix Zerin',
     author_email='phx@phx.ph',
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Framework :: Twisted',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.8',
+    ],
     description='Leverj OrderSigner Daemon',
     entry_points={
         'console_scripts': [
