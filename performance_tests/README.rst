@@ -14,6 +14,10 @@ Running Tests
 -------------
 It is recommended that you run the tests in a separate virtualenv, as a few additional dependencies are required.
 
-Install the additional dependencies
+Install the additional dependencies via pip:
+
+.. code-block:: bash
+
+    pip install -r requirements.txt
 
 The daemon tests can run in Python 2 or Python 3, however the integrated test will only run in Python 3.
