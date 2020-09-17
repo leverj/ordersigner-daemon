@@ -20,6 +20,11 @@ setup(
     author='Phoenix Zerin',
     author_email='phx@phx.ph',
     description='Leverj OrderSigner Daemon',
+    entry_points={
+        'console_scripts': [
+            'ordersigner-daemon = ordersigner_daemon.bin.daemon:main'
+        ],
+    },
     install_requires=[
         'twisted~=20.3',
         'leverj-ordersigner~=0.9',
@@ -29,7 +34,13 @@ setup(
     license='MIT',
     long_description=long_description,
     name='leverj-ordersigner-daemon',
-    packages=find_packages('.'),
+
+    # Needed for twistd to find our plugin.
+    # Note that the documentation explicitly states that ``twisted/plugins``
+    # must **not** contain ``__init__.py`` files.
+    # https://twistedmatrix.com/documents/current/core/howto/tap.html
+    packages=find_packages('.') + ['twisted.plugins'],
+
     url='https://github.com/leverj/ordersigner-daemon',
     version='1.0rc0',
 )

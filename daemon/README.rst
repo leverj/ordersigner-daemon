@@ -18,7 +18,7 @@ This project uses `Twisted`_ for event-driven networking functionality.  To run 
 
 .. code-block:: bash
 
-    twistd -y daemon.tac
+    twistd leverj-ordersigner
 
 ``twistd`` will create the following files when it runs:
 
@@ -31,7 +31,7 @@ This project uses `Twisted`_ for event-driven networking functionality.  To run 
     kill `cat twistd.pid`
 
 .. tip::
-    Call ``twistd -ny daemon.tac`` to run the daemon process in the foreground.
+    Call ``twistd -n leverj-ordersigner`` to run the daemon process in the foreground.
 
 Interacting with the Daemon
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -63,6 +63,17 @@ Send a serialised order in JSON format, terminated with ``\r\n`` (e.g., press :k
     Ensure that you escape all non-ASCII content and/or that your terminal uses UTF-8 encoding.
 
 Note that, due to the way Unix Domain Sockets work, the daemon **can** handle connections from multiple clients simultaneously.  For more information, see `How do Unix Domain Sockets differentiate between multiple clients?`_
+
+.. tip::
+    You can specify an alternative interface (e.g., TCP) like this:
+
+    .. code-block:: bash
+
+        twistd leverj-ordersigner -i tcp:12345:interface=127.0.0.1
+
+    The above will start a daemon listening for TCP connections on localhost port 12345.
+
+    See documentation for ``twisted.internet.endpoints.serverFromString`` for all possible options (note that some interfaces might not work properly; this project was designed explicitly to support Unix Domain Sockets).
 
 Development
 -----------

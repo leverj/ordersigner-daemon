@@ -13,6 +13,7 @@
 # twistd generated files
 /twistd.log
 /twistd.pid
+/twisted/plugins/dropin.cache
 
 # Virtualenvs for unit tests.
 # https://tox.readthedocs.io/en/latest/

@@ -16,8 +16,11 @@ __all__ = [
     'UnprocessableResponse',
 ]
 
-def async_create_client(use_reactor=reactor):
-    # type: (base.ReactorBase) -> defer.Deferred
+DEFAULT_INTERFACE = 'unix:/tmp/leverj-ordersigner-daemon.sock'
+
+
+def async_create_client(interface=DEFAULT_INTERFACE, use_reactor=reactor):
+    # type: (str, base.ReactorBase) -> defer.Deferred
     """
     Asynchronously creates a new client instance and establishes a connection
     to the daemon.
@@ -31,6 +34,9 @@ def async_create_client(use_reactor=reactor):
 
     Refer to the project ``README`` for more information and examples.
 
+    :param interface: Interface to connect to.  This should match the interface
+    that you specified when starting the daemon.
+
     :param use_reactor: The reactor (event loop) to use.  Unless you are trying
     to accomplish something very specific, you can probably keep the default
     value.
@@ -38,10 +44,7 @@ def async_create_client(use_reactor=reactor):
     :return: A deferred that will resolve with the :py:cls:`OrderSignerClient`
     instance.
     """
-    client = endpoints.clientFromString(
-        use_reactor,
-        'unix:/tmp/leverj-ordersigner-daemon.sock',
-    )
+    client = endpoints.clientFromString(use_reactor, interface)
 
     return endpoints.connectProtocol(client, OrderSignerClient())
 
@@ -51,6 +54,7 @@ class NonSuccessResponse(ValueError):
     Base class that indicates that the client received a non-success response
     from the daemon.
     """
+
 
 class ErrorResponse(NonSuccessResponse):
     """
