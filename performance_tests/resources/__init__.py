@@ -3,6 +3,7 @@ Order data used for performance tests.
 
 https://github.com/leverj/leverj-ordersigner/blob/master/tests/spot_multi_order_tests.py
 """
+from itertools import cycle, islice
 
 instruments = {
     "FEEETH": {
@@ -94,7 +95,7 @@ instruments = {
 
 signer = "0xb98ea45b6515cbd6a5c39108612b2cd5ae184d5eb0d72b21389a1fe6db01fe0d"
 
-orders = [
+base_orders = [
     {"orderType": "LMT", "side": "buy", "price": 147.51, "quantity": 0.1356,
         "timestamp": 1575332212506984,
         "accountId": "0x3b0194e96c57dd9cFb839720080b5626718C0E48",
@@ -2059,3 +2060,6 @@ orders = [
         "token": "0x1D7e3a1A65a367db1D1D3F51A54aC01a2c4C92ff",
         "instrument": "ETHDAI",
         "signature": "0xf25a55b9a38c561a2bb9716c8a451a5782e2bdd58c59ae1995b72250f5c0bf3f64614ff237a38b68f21cf0fd15da8474ba066d229d8e5d72c7639676cc07d0581c"}]
+
+# Stretch ``base_orders`` to a standard size.
+orders = list(islice(cycle(base_orders), 1000))
