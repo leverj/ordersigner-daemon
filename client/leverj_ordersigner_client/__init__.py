@@ -19,8 +19,8 @@ __all__ = [
 DEFAULT_INTERFACE = 'unix:/tmp/leverj-ordersigner-daemon.sock'
 
 
-def async_create_client(interface=DEFAULT_INTERFACE, use_reactor=reactor):
-    # type: (str, base.ReactorBase) -> defer.Deferred
+def async_create_client(use_reactor=reactor, interface=DEFAULT_INTERFACE):
+    # type: (base.ReactorBase, str) -> defer.Deferred
     """
     Asynchronously creates a new client instance and establishes a connection
     to the daemon.
@@ -34,12 +34,12 @@ def async_create_client(interface=DEFAULT_INTERFACE, use_reactor=reactor):
 
     Refer to the project ``README`` for more information and examples.
 
-    :param interface: Interface to connect to.  This should match the interface
-    that you specified when starting the daemon.
-
     :param use_reactor: The reactor (event loop) to use.  Unless you are trying
     to accomplish something very specific, you can probably keep the default
     value.
+
+    :param interface: Interface to connect to.  This should match the interface
+    that you specified when starting the daemon.
 
     :return: A deferred that will resolve with the :py:cls:`OrderSignerClient`
     instance.

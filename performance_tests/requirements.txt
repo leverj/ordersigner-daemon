@@ -2,4 +2,3 @@ codetiming
 leverj-ordersigner
 tqdm
 -e ../client
--e ../daemon
