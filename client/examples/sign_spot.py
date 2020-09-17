@@ -22,11 +22,11 @@ def main():
 
     # Attach a callback that will be executed when the client successfully
     # establishes a connection to the daemon.
-    d.addCallback(clientConnected)
+    d.addCallback(client_connected)
 
     # Attach an errback that will be executed if the client is unable to
     # establish a connection (e.g., if the daemon isn't running).
-    d.addErrback(clientConnectionFailure)
+    d.addErrback(client_connection_failure)
 
     # Start the reactor.
     # Note that this will block on the current thread until ``reactor.stop()``
@@ -38,7 +38,7 @@ def main():
     print('All done!')
 
 
-def clientConnected(client):
+def client_connected(client):
     # type: (OrderSignerClient) -> None
     """
     Runs when the client successfully establishes a connection to the daemon.
@@ -79,7 +79,7 @@ def clientConnected(client):
 
     # Attach a callback to the :py:cls:`defer.Deferred` instance to handle the
     # signature returned by the daemon.
-    def responseReceived(signature):
+    def response_received(signature):
         # type: (str) -> None
         """
         Executed when the client successfully receives a signature from the
@@ -98,11 +98,11 @@ def clientConnected(client):
         # Stop the reactor and
         reactor.stop()
 
-    d.addCallback(responseReceived)
+    d.addCallback(response_received)
 
     # Attach an errback to the :py:cls:`defer.Deferred` instance to handle any
     # error that prevented a successful signing.
-    def requestFailed(failure_):
+    def request_failed(failure_):
         # type: (failure.Failure) -> None
         """
         Executed if something goes wrong while parsing a response from the
@@ -114,10 +114,10 @@ def clientConnected(client):
         """
         failure_.printTraceback(stderr)
 
-    d.addErrback(requestFailed)
+    d.addErrback(request_failed)
 
 
-def clientConnectionFailure(failure_):
+def client_connection_failure(failure_):
     # type: (failure.Failure) -> None
     """
     Executed if the client is unable to establish a connection to the daemon.

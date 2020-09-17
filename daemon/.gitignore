@@ -11,8 +11,8 @@
 /docs/_build/
 
 # twistd generated files
-/twisted.log
-/twisted.pid
+/twistd.log
+/twistd.pid
 
 # Virtualenvs for unit tests.
 # https://tox.readthedocs.io/en/latest/

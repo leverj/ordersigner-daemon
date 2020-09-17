@@ -22,13 +22,13 @@ This project uses `Twisted`_ for event-driven networking functionality.  To run 
 
 ``twistd`` will create the following files when it runs:
 
-* ``twisted.log``: process logs.
-* ``twisted.pid``: contains the process ID of the daemon process.  You can use
+* ``twistd.log``: process logs.
+* ``twistd.pid``: contains the process ID of the daemon process.  You can use
   this to terminate the daemon like so:
 
   .. code-block:: bash
 
-    kill `cat twisted.pid`
+    kill `cat twistd.pid`
 
 .. tip::
     Call ``twistd -ny daemon.tac`` to run the daemon process in the foreground.
