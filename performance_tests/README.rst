@@ -2,16 +2,13 @@ Leverj OrderSigner Daemon Performance Tests
 ===========================================
 These tests compare the performance of using the client-daemon setup vs. integrating the ``leverj-ordersigner`` library directly into an application.
 
-There are three tests:
+There are two tests:
 
 1. ``integrated.py``
     Shows performance of an application signing transactions in the same process, instead of using the daemon.
 
-2. ``daemon_single_thread.py``
-    Shows performance of an application interfacing with the daemon in a single thread.
-
-3. ``daemon_multi_threaded.py``
-    Shows performance of an application interfacing with the daemon using multiple threads.
+2. ``daemon.py``
+    Shows performance of an application interfacing with the daemon in an asynchronous manner.
 
 Running Tests
 -------------
