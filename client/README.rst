@@ -4,7 +4,7 @@ The client provides a way for applications to interface with the Leverj OrderSig
 
 Setup
 -----
-You will need Python 3.8 or later to install the client.  Python 2.7 is also supported but not recommended, as `Python 2 reached its end of life on January 1st, 2020`_.
+You will need Python 3.8 or later to install the client (earlier versions may work but are unsupported).  Python 2.7 is also supported but not recommended, as `Python 2 reached its end of life on January 1st, 2020`_.
 
 To install the library into your `virtualenv`_:
 

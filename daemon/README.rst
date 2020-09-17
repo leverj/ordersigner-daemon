@@ -4,7 +4,7 @@ The daemon provides an interface for generating transaction signatures.  Notably
 
 Setup
 -----
-You will need Python 3.8 or later to run the daemon.
+You will need Python 3.8 or later to run the daemon (earlier versions may work but are unsupported).
 
 To install the library into your `virtualenv`_:
 
