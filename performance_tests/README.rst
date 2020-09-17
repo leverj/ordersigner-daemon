@@ -20,4 +20,4 @@ Install the additional dependencies via pip:
 
     pip install -r requirements.txt
 
-The daemon tests can run in Python 2 or Python 3, however the integrated test will only run in Python 3.
+The tests can be run using Python 3.8 or later (earlier versions might work but are unsupported).
